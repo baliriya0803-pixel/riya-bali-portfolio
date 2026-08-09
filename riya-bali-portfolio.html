@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Riya Bali — Creative Content & Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#052538;
+    --ink-soft:#4C7085;
+    --ocean:#1477A6;
+    --teal:#2EC4B6;
+    --deep:#031B29;
+    --paper:#F3FAFB;
+    --paper-dim:#E7F3F5;
+    --line: rgba(5,37,56,0.12);
+    --radius: 18px;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Plus Jakarta Sans', sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  ::selection{ background:var(--ocean); color:var(--paper); }
+
+  h1,h2,h3, .display{
+    font-family:'Bebas Neue', sans-serif;
+    letter-spacing:0.02em;
+    font-weight:400;
+    line-height:0.92;
+  }
+  .mono{
+    font-family:'Space Mono', monospace;
+  }
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--ocean);
+    font-weight:700;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+
+  @media (prefers-reduced-motion: no-preference){
+    .reveal{
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.in{ opacity:1; transform:translateY(0); }
+  }
+
+  /* NAV */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(253,246,236,0.86);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    max-width:1180px; margin:0 auto; padding:18px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo{ font-family:'Bebas Neue',sans-serif; font-size:1.5rem; letter-spacing:0.04em; }
+  .logo span{ color:var(--ocean); }
+  .navlinks{ display:flex; gap:34px; font-size:0.88rem; font-weight:600; }
+  .navlinks a{ position:relative; padding-bottom:4px; }
+  .navlinks a::after{
+    content:''; position:absolute; left:0; bottom:0; height:2px; width:0;
+    background:var(--ocean); transition:width 0.25s ease;
+  }
+  .navlinks a:hover::after{ width:100%; }
+  .navlinks a:focus-visible, .btn:focus-visible{ outline:2px solid var(--ocean); outline-offset:3px; }
+  .navcta{
+    background:var(--ink); color:var(--paper); padding:9px 18px; border-radius:999px;
+    font-size:0.82rem; font-weight:700;
+  }
+  @media (max-width:720px){ .navlinks{ display:none; } }
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:170px 0 90px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; top:-180px; right:-160px; width:560px; height:560px;
+    background:radial-gradient(circle at center, var(--teal) 0%, rgba(46,196,182,0) 70%);
+    opacity:0.4; z-index:0;
+  }
+  .hero::after{
+    content:'';
+    position:absolute; bottom:-220px; left:-180px; width:480px; height:480px;
+    background:radial-gradient(circle at center, var(--ocean) 0%, rgba(20,119,166,0) 70%);
+    opacity:0.3; z-index:0;
+  }
+  .wave-divider{
+    position:absolute; bottom:0; left:0; width:100%; line-height:0; z-index:1;
+  }
+  .wave-divider svg{ width:100%; height:90px; display:block; }
+  .wave-divider path{ fill:var(--paper); }
+  @media (prefers-reduced-motion: no-preference){
+    .wave-anim{ animation:waveshift 9s ease-in-out infinite; transform-origin:center; }
+  }
+  @keyframes waveshift{
+    0%,100%{ transform:translateX(0) scaleY(1); }
+    50%{ transform:translateX(-2%) scaleY(1.06); }
+  }
+  .hero-inner{ position:relative; z-index:1; }
+  .hero h1{
+    font-size:clamp(3.6rem, 10vw, 8.4rem);
+    color:var(--ink);
+  }
+  .hero h1 .accent{ color:var(--ocean); }
+  .role-row{
+    display:flex; align-items:center; gap:14px; margin-top:22px;
+    font-family:'Space Mono', monospace; font-size:1.05rem; color:var(--ink-soft);
+  }
+  .role-row .cursor{
+    display:inline-block; width:9px; height:22px; background:var(--ocean);
+    animation:blink 1s step-end infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+  .hero-sub{
+    max-width:520px; margin-top:28px; font-size:1.05rem; color:var(--ink-soft);
+  }
+  .hero-links{ display:flex; gap:16px; margin-top:36px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 26px; border-radius:999px; font-weight:700; font-size:0.9rem;
+    border:1.5px solid var(--ink); transition:transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+  .btn-solid{ background:var(--ink); color:var(--paper); }
+  .btn-solid:hover{ background:var(--ocean); border-color:var(--ocean); transform:translateY(-2px); }
+  .btn-outline:hover{ background:var(--ink); color:var(--paper); transform:translateY(-2px); }
+
+  /* STATS */
+  .stats{ padding:60px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .stats-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
+  }
+  @media (max-width:860px){ .stats-grid{ grid-template-columns:repeat(2,1fr); } }
+  .stat-num{
+    font-family:'Space Mono', monospace; font-weight:700;
+    font-size:clamp(2.1rem,4vw,3rem); color:var(--ocean);
+  }
+  .stat-label{ font-size:0.85rem; color:var(--ink-soft); margin-top:6px; max-width:200px; }
+
+  /* SECTION HEADS */
+  section{ padding:110px 0; }
+  .sec-head{ margin-bottom:56px; }
+  .sec-head h2{ font-size:clamp(2.6rem,5vw,4rem); margin-top:8px; }
+
+  /* FEED (signature element) */
+  .feed{ background:var(--ink); color:var(--paper); }
+  .feed .eyebrow{ color:var(--teal); }
+  .feed .sec-head p{ color:rgba(253,246,236,0.65); max-width:520px; margin-top:14px; }
+  .feed-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
+    margin-top:20px;
+  }
+  @media (max-width:860px){ .feed-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .feed-grid{ grid-template-columns:1fr; } }
+  .card{
+    aspect-ratio:1/1.05;
+    border-radius:var(--radius);
+    padding:22px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    position:relative; overflow:hidden;
+    cursor:default;
+    transition:transform 0.35s ease;
+  }
+  .card:hover{ transform:translateY(-6px); }
+  .card .tag{ font-family:'Space Mono',monospace; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; opacity:0.85; }
+  .card h3{ font-size:1.7rem; line-height:1.02; }
+  .card .org{ font-size:0.85rem; font-weight:600; opacity:0.85; margin-top:4px; }
+  .card .metric{
+    font-family:'Space Mono',monospace; font-size:0.82rem; font-weight:700;
+    background:rgba(253,246,236,0.16); padding:8px 12px; border-radius:10px;
+    opacity:0; transform:translateY(8px); transition:all 0.3s ease; align-self:flex-start;
+  }
+  .card:hover .metric{ opacity:1; transform:translateY(0); }
+  .c1{ background:linear-gradient(155deg,#1477A6,#0B5378); }
+  .c2{ background:linear-gradient(155deg,#2EC4B6,#1B9E92); color:var(--deep); }
+  .c3{ background:linear-gradient(155deg,#0B5378,#052538); }
+  .c4{ background:linear-gradient(155deg,#3F9BC7,#1B6690); }
+  .c5{ background:linear-gradient(155deg,#1477A6,#052538); }
+  .c6{ background:linear-gradient(155deg,#052538,#031B29); }
+  .placeholder-note{
+    margin-top:26px; font-size:0.82rem; color:rgba(253,246,236,0.5); font-family:'Space Mono',monospace;
+  }
+
+  /* REELS */
+  .reels{ background:var(--paper-dim); }
+  .reels .reels-sub{ color:var(--ink-soft); max-width:480px; margin-top:14px; }
+  .reels-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+    margin-top:20px;
+  }
+  @media (max-width:900px){ .reels-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:600px){ .reels-grid{ grid-template-columns:1fr; } }
+  .reel-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px; display:flex; flex-direction:column; gap:12px; overflow:hidden;
+  }
+  .reel-card .reel-label{
+    font-family:'Space Mono',monospace; font-size:0.78rem; font-weight:700;
+    color:var(--ocean); text-transform:uppercase; letter-spacing:0.06em;
+  }
+  .reel-card iframe{ border-radius:12px; width:100% !important; }
+  .instagram-media{ margin:0 !important; width:100% !important; min-width:0 !important; }
+
+  /* ABOUT */
+  .about-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px; align-items:start; }
+  @media (max-width:860px){ .about-grid{ grid-template-columns:1fr; } }
+  .about-grid p{ color:var(--ink-soft); font-size:1.08rem; margin-bottom:18px; max-width:520px; }
+  .about-grid p strong{ color:var(--ink); }
+  .skills-box h3{ font-size:1.6rem; margin-bottom:16px; }
+  .chip-group{ margin-bottom:26px; }
+  .chip-group .glabel{ font-family:'Space Mono',monospace; font-size:0.72rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px; display:block; }
+  .chips{ display:flex; flex-wrap:wrap; gap:10px; }
+  .chip{
+    border:1.5px solid var(--ink); border-radius:999px; padding:8px 16px;
+    font-size:0.84rem; font-weight:600;
+  }
+  .chip.filled{ background:var(--ocean); border-color:var(--ocean); color:var(--paper); }
+  .org a, .exp-org a{ color:inherit; border-bottom:1px dotted currentColor; }
+  .org a:hover, .exp-org a:hover{ border-bottom-style:solid; }
+
+  /* EXPERIENCE */
+  .exp{ background:var(--paper-dim); }
+  .exp-list{ display:flex; flex-direction:column; }
+  .exp-row{
+    display:grid; grid-template-columns:180px 1fr; gap:32px;
+    padding:32px 0; border-top:1px solid var(--line);
+  }
+  .exp-list .exp-row:last-child{ border-bottom:1px solid var(--line); }
+  @media (max-width:700px){ .exp-row{ grid-template-columns:1fr; gap:6px; } }
+  .exp-date{ font-family:'Space Mono',monospace; font-size:0.82rem; color:var(--ink-soft); }
+  .exp-role{ font-size:1.35rem; font-weight:700; }
+  .exp-org{ color:var(--ocean); font-weight:600; font-size:0.95rem; margin-top:2px; }
+  .exp-desc{ color:var(--ink-soft); margin-top:10px; font-size:0.97rem; max-width:640px; }
+
+  /* EDUCATION */
+  .edu-card{
+    border:1.5px solid var(--ink); border-radius:var(--radius); padding:40px;
+    display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap;
+  }
+  .edu-card h3{ font-size:1.9rem; }
+  .edu-card .org{ color:var(--ocean); font-weight:700; margin-top:4px; }
+  .edu-meta{ text-align:right; font-family:'Space Mono',monospace; font-size:0.85rem; color:var(--ink-soft); }
+  @media (max-width:600px){ .edu-meta{ text-align:left; } }
+
+  /* CONTACT / FOOTER */
+  footer{
+    background:var(--ink); color:var(--paper); padding:100px 0 40px; text-align:center;
+  }
+  footer h2{ font-size:clamp(2.6rem,8vw,5.4rem); }
+  footer .eyebrow{ color:var(--teal); }
+  .contact-links{
+    display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-top:36px;
+  }
+  footer .btn-solid{ background:var(--ocean); border-color:var(--ocean); color:var(--paper); }
+  footer .btn-solid:hover{ background:var(--teal); border-color:var(--teal); color:var(--ink); }
+  footer .btn-outline{ border-color:rgba(253,246,236,0.4); }
+  footer .btn-outline:hover{ background:var(--paper); color:var(--ink); }
+  .foot-bottom{
+    margin-top:80px; padding-top:24px; border-top:1px solid rgba(253,246,236,0.15);
+    font-family:'Space Mono',monospace; font-size:0.75rem; color:rgba(253,246,236,0.45);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">RIYA<span>.</span>BALI</div>
+    <div class="navlinks">
+      <a href="#work">Work</a>
+      <a href="#reels">Reels</a>
+      <a href="#posts">Posts</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="navcta" href="#contact">Let's talk</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="eyebrow reveal in">Toronto, ON · Open to work</div>
+    <h1>RIYA<br>BALI<span class="accent">.</span></h1>
+    <div class="role-row">
+      <span id="roleText">social media design</span><span class="cursor"></span>
+    </div>
+    <p class="hero-sub">Engineering student and self-taught content designer who's spent the last three years building social media, branding, and marketing work for nonprofits, student orgs, and small businesses across India and Canada.</p>
+    <div class="hero-links">
+      <a class="btn btn-solid" href="#work">See the work</a>
+      <a class="btn btn-outline" href="#contact">Get in touch</a>
+    </div>
+  </div>
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+      <path class="wave-anim" d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,50 L1440,90 L0,90 Z"></path>
+    </svg>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap stats-grid">
+    <div class="reveal">
+      <div class="stat-num">+55%</div>
+      <div class="stat-label">non-follower engagement on Share A Book India Association (SABIA) reels</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">+57.8%</div>
+      <div class="stat-label">profile visits from redesigned content strategy</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">+40%</div>
+      <div class="stat-label">non-follower views on ALS Care and Support Foundation (ALSCAS) templates</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">donations driven by a self-designed outreach poster series</div>
+    </div>
+  </div>
+</section>
+
+<section class="feed" id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Selected work</div>
+      <h2>The Current</h2>
+      <p>A running grid of campaigns, templates, and brand systems. Hover a card for the result.</p>
+    </div>
+    <div class="feed-grid">
+      <div class="card c1 reveal">
+        <div class="tag">Nonprofit · Social</div>
+        <div><h3>SABIA Reels</h3><div class="org"><a href="https://www.instagram.com/shareabookindia/" target="_blank" rel="noopener">Share A Book India Association</a></div></div>
+        <div class="metric">+55% non-follower engagement</div>
+      </div>
+      <div class="card c2 reveal">
+        <div class="tag">Brand & Web</div>
+        <div><h3>Noble Path Consultants</h3><div class="org"><a href="https://www.noblepathconsultants.com/" target="_blank" rel="noopener">Website + logo, built from zero</a></div></div>
+        <div class="metric">Full brand identity in 4 months</div>
+      </div>
+      <div class="card c3 reveal">
+        <div class="tag">Awareness Campaign</div>
+        <div><h3>ALSCAS Knowledge Bytes</h3><div class="org"><a href="https://www.instagram.com/als.careandsupportindia/" target="_blank" rel="noopener">ALS Care and Support Foundation</a></div></div>
+        <div class="metric">+40% non-follower views</div>
+      </div>
+      <div class="card c4 reveal">
+        <div class="tag">Student Org · Marketing</div>
+        <div><h3>EWB Campaign Graphics</h3><div class="org"><a href="https://www.instagram.com/ewbuoft/" target="_blank" rel="noopener">Engineers Without Borders (EWB), U of T</a></div></div>
+        <div class="metric">Ongoing content for chapter events</div>
+      </div>
+      <div class="card c5 reveal">
+        <div class="tag">Print · Outreach</div>
+        <div><h3>Kitab Utsav Posters</h3><div class="org"><a href="https://www.instagram.com/shareabookindia/" target="_blank" rel="noopener">SABIA Fundraiser, Mumbai</a></div></div>
+        <div class="metric">500+ books collected</div>
+      </div>
+      <div class="card c6 reveal">
+        <div class="tag">Templates · Branding</div>
+        <div><h3>SEA Visual System</h3><div class="org"><a href="https://www.instagram.com/seauoft/" target="_blank" rel="noopener">Sustainable Engineers Association (SEA)</a></div></div>
+        <div class="metric">Consistent templates across a 7-person team</div>
+      </div>
+    </div>
+    <div class="placeholder-note">↑ A mix of real work and a few placeholders — swap the rest in as you export more.</div>
+  </div>
+</section>
+
+<section class="reels" id="reels">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Watch</div>
+      <h2>In Motion</h2>
+      <p class="reels-sub">A few reels and edits, pulled straight from Instagram.</p>
+    </div>
+    <div class="reels-grid">
+      <div class="reel-card reveal">
+        <p class="reel-label">School Event</p>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/C7eMz1di97i/" data-instgrm-version="14"></blockquote>
+      </div>
+      <div class="reel-card reveal">
+        <p class="reel-label">Book Fest</p>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DCy-nF_t0vi/" data-instgrm-version="14"></blockquote>
+      </div>
+      <div class="reel-card reveal">
+        <p class="reel-label">People at Book Fest</p>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DDoQ6A-zhK3/" data-instgrm-version="14"></blockquote>
+      </div>
+      <div class="reel-card reveal">
+        <p class="reel-label">SABIA</p>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DJbrZBpNftg/" data-instgrm-version="14"></blockquote>
+      </div>
+      <div class="reel-card reveal">
+        <p class="reel-label">ALSCAS — 10-Year Anniversary</p>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DQ_1cYbEuPX/" data-instgrm-version="14"></blockquote>
+      </div>
+      <div class="reel-card reveal">
+        <p class="reel-label">Event Invitation</p>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DVYOHGFkl6h/" data-instgrm-version="14"></blockquote>
+      </div>
+      <div class="reel-card reveal">
+        <p class="reel-label">Noble Path — Reel</p>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DI-0NMko5bg/" data-instgrm-version="14"></blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="posts" id="posts">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Graphics & Campaigns</div>
+      <h2>Posts</h2>
+      <p class="reels-sub">Recent design work across student orgs and nonprofit clients.</p>
+    </div>
+    <div class="reels-grid">
+      <div class="reel-card reveal">
+        <p class="reel-label">EAA — Players Needed</p>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DZV8_rlD56J/" data-instgrm-version="14"></blockquote>
+      </div>
+      <div class="reel-card reveal">
+        <p class="reel-label">EAA — Meet the Team</p>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DaBiXM-gU7u/" data-instgrm-version="14"></blockquote>
+      </div>
+      <div class="reel-card reveal">
+        <p class="reel-label">SEA — Meet the Team Series</p>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DaJdKVFDUbG/" data-instgrm-version="14"></blockquote>
+      </div>
+      <div class="reel-card reveal">
+        <p class="reel-label">ALSCAS — ALS Awareness Day</p>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DLJ8oyfsQ3K/" data-instgrm-version="14"></blockquote>
+      </div>
+      <div class="reel-card reveal">
+        <p class="reel-label">Noble Path — Post</p>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DIds_dZoye4/" data-instgrm-version="14"></blockquote>
+      </div>
+      <div class="reel-card reveal">
+        <p class="reel-label">Noble Path — Post</p>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DIg9AgiuZg2/" data-instgrm-version="14"></blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+<script async src="//www.instagram.com/embed.js"></script>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <div class="eyebrow">About</div>
+      <h2 style="font-size:clamp(2.4rem,4vw,3.4rem); margin:10px 0 26px;">Design that's meant to be scrolled past twice.</h2>
+      <p>I'm a second-year Mechanical Engineering student at the <strong>University of Toronto</strong> (PEY Co-op) — but most of my design instincts come from three years of running social accounts and building brand systems for organizations that couldn't afford an agency.</p>
+      <p>I've designed reels that outperformed follower baselines, launched a nonprofit's entire digital presence from a blank canvas, and kept a 7-person team's templates on-brand. I like projects where a good graphic has to do real work: raise a donation number, grow an account, or make a cause legible to someone scrolling fast.</p>
+      <p>Currently: <strong>Publicity Director</strong> at the Engineering Athletics Association and <strong>Graphic Designer</strong> at the Sustainable Engineers Association.</p>
+      <p>I also post my personal art on Instagram — <a href="https://www.instagram.com/eupho.riyaaa/" target="_blank" rel="noopener" style="color:var(--ocean); border-bottom:1px dotted var(--ocean);">@eupho.riyaaa</a>.</p>
+    </div>
+    <div class="skills-box reveal">
+      <h3>Toolkit</h3>
+      <div class="chip-group">
+        <span class="glabel">Design & Content</span>
+        <div class="chips">
+          <span class="chip filled">Canva</span>
+          <span class="chip filled">Procreate</span>
+          <span class="chip filled">Wix</span>
+          <span class="chip filled">VN Editor</span>
+          <span class="chip filled">VideoLeap</span>
+        </div>
+      </div>
+      <div class="chip-group">
+        <span class="glabel">Planning & Production</span>
+        <div class="chips">
+          <span class="chip">Word</span>
+          <span class="chip">PowerPoint</span>
+          <span class="chip">Excel</span>
+          <span class="chip">Gantt Charts</span>
+          <span class="chip">SketchUp</span>
+        </div>
+      </div>
+      <div class="chip-group">
+        <span class="glabel">Ways of working</span>
+        <div class="chips">
+          <span class="chip">Creativity</span>
+          <span class="chip">Teamwork</span>
+          <span class="chip">Communication</span>
+          <span class="chip">Problem-solving</span>
+          <span class="chip">Analytical</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="exp" id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Experience</div>
+      <h2>Where the work happened</h2>
+    </div>
+    <div class="exp-list">
+      <div class="exp-row reveal">
+        <div class="exp-date">MAY 2026 — APR 2027</div>
+        <div>
+          <div class="exp-role">Publicity Director</div>
+          <div class="exp-org"><a href="https://www.instagram.com/skulesports/" target="_blank" rel="noopener">Engineering Athletics Association (EAA)</a></div>
+          <p class="exp-desc">Design promotional graphics and marketing materials for athletic events and student engagement initiatives; manage social media outreach and maintain the org's Linktree.</p>
+        </div>
+      </div>
+      <div class="exp-row reveal">
+        <div class="exp-date">MAY 2026 — APR 2027</div>
+        <div>
+          <div class="exp-role">Graphic Designer</div>
+          <div class="exp-org"><a href="https://www.instagram.com/seauoft/" target="_blank" rel="noopener">Sustainable Engineers Association (SEA)</a></div>
+          <p class="exp-desc">Design branded social graphics and promotional material; built customizable templates to keep visual branding consistent across a 7-member communications team.</p>
+        </div>
+      </div>
+      <div class="exp-row reveal">
+        <div class="exp-date">JAN 2026 — ONGOING</div>
+        <div>
+          <div class="exp-role">Content Creator, Marketing Team</div>
+          <div class="exp-org"><a href="https://www.instagram.com/ewbuoft/" target="_blank" rel="noopener">Engineers Without Borders (EWB) — U of T Chapter</a></div>
+          <p class="exp-desc">Design graphics and posts promoting EWB initiatives and campaigns, aligning content with organizational branding to boost outreach and participation.</p>
+        </div>
+      </div>
+      <div class="exp-row reveal">
+        <div class="exp-date">MAY 2025 — DEC 2025</div>
+        <div>
+          <div class="exp-role">Volunteer, Social Media Marketing Team</div>
+          <div class="exp-org"><a href="https://www.instagram.com/als.careandsupportindia/" target="_blank" rel="noopener">ALS Care and Support Foundation (ALSCAS)</a></div>
+          <p class="exp-desc">Designed the templates behind ALSCAS Knowledge Bytes and event posters (incl. ALS/MND Awareness Day), lifting non-follower views 40%; coordinated the visual design of a 2-minute "10 Years" anniversary video.</p>
+        </div>
+      </div>
+      <div class="exp-row reveal">
+        <div class="exp-date">APR 2025 — JUL 2025</div>
+        <div>
+          <div class="exp-role">Website, Social Media & Branding Lead</div>
+          <div class="exp-org"><a href="https://www.noblepathconsultants.com/" target="_blank" rel="noopener">Noble Path Consultants</a></div>
+          <p class="exp-desc">Designed and launched a website and logo from scratch on Wix and Procreate; built the brand's entire social presence and visual identity from zero over four months.</p>
+        </div>
+      </div>
+      <div class="exp-row reveal">
+        <div class="exp-date">MAY 2024 — JUL 2025</div>
+        <div>
+          <div class="exp-role">Intern, Communications Team</div>
+          <div class="exp-org"><a href="https://www.instagram.com/shareabookindia/" target="_blank" rel="noopener">Share A Book India Association (SABIA)</a></div>
+          <p class="exp-desc">Designed trend-driven social reels highlighting SABIA's impact on underprivileged kids' education — non-follower engagement +55%, profile visits +57.8%, content interactions +47.2%.</p>
+        </div>
+      </div>
+      <div class="exp-row reveal">
+        <div class="exp-date">SEP 2022 — DEC 2024</div>
+        <div>
+          <div class="exp-role">Head Volunteer, Annual Kitab Utsav Fundraiser</div>
+          <div class="exp-org"><a href="https://www.instagram.com/shareabookindia/" target="_blank" rel="noopener">Share A Book India Association (SABIA)</a></div>
+          <p class="exp-desc">Led end-to-end event planning and designed outreach posters for a book-sourcing campaign, personally collecting 500+ donated books — the highest ever recorded at SABIA.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Education</div>
+      <h2>Currently studying</h2>
+    </div>
+    <div class="edu-card reveal">
+      <div>
+        <h3>Bachelor of Applied Science — Mechanical Engineering</h3>
+        <div class="org">University of Toronto, PEY Co-op</div>
+      </div>
+      <div class="edu-meta">
+        Sept 2025 – May 2030 (expected)
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="eyebrow reveal">Let's make something</div>
+    <h2 class="reveal">Say hi.</h2>
+    <div class="contact-links reveal">
+      <a class="btn btn-solid" href="mailto:baliriya0803@gmail.com">Email me</a>
+      <a class="btn btn-outline" href="https://www.linkedin.com/in/riya-bali-b20731308/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-outline" href="https://www.instagram.com/eupho.riyaaa/" target="_blank" rel="noopener">Art — @eupho.riyaaa</a>
+    </div>
+    <div class="foot-bottom">© 2026 Riya Bali — Built for social, marketing & graphic design roles.</div>
+  </div>
+</footer>
+
+<script>
+  // Rotating role text
+  const roles = ["social media design", "content strategy", "graphic design", "brand & marketing"];
+  let ri = 0;
+  const el = document.getElementById('roleText');
+  setInterval(() => {
+    ri = (ri + 1) % roles.length;
+    el.style.opacity = 0;
+    setTimeout(() => { el.textContent = roles[ri]; el.style.opacity = 1; }, 220);
+  }, 2400);
+  el.style.transition = 'opacity 0.2s ease';
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

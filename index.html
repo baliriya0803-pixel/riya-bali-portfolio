@@ -168,27 +168,27 @@
   .feed .eyebrow{ color:var(--teal); }
   .feed .sec-head p{ color:rgba(253,246,236,0.65); max-width:520px; margin-top:14px; }
   .feed-grid{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:18px;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:14px;
     margin-top:20px;
   }
-  @media (max-width:860px){ .feed-grid{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:560px){ .feed-grid{ grid-template-columns:1fr; } }
+  @media (max-width:860px){ .feed-grid{ grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:560px){ .feed-grid{ grid-template-columns:repeat(2,1fr); } }
   .card{
     aspect-ratio:1/1.05;
-    border-radius:var(--radius);
-    padding:22px;
+    border-radius:14px;
+    padding:14px;
     display:flex; flex-direction:column; justify-content:space-between;
     position:relative; overflow:hidden;
     cursor:default;
     transition:transform 0.35s ease;
   }
   .card:hover{ transform:translateY(-6px); }
-  .card .tag{ font-family:'Space Mono',monospace; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; opacity:0.85; }
-  .card h3{ font-size:1.7rem; line-height:1.02; }
-  .card .org{ font-size:0.85rem; font-weight:600; opacity:0.85; margin-top:4px; }
+  .card .tag{ font-family:'Space Mono',monospace; font-size:0.56rem; letter-spacing:0.08em; text-transform:uppercase; opacity:0.85; }
+  .card h3{ font-size:1.15rem; line-height:1.05; }
+  .card .org{ font-size:0.68rem; font-weight:600; opacity:0.85; margin-top:3px; }
   .card .metric{
-    font-family:'Space Mono',monospace; font-size:0.82rem; font-weight:700;
-    background:rgba(253,246,236,0.16); padding:8px 12px; border-radius:10px;
+    font-family:'Space Mono',monospace; font-size:0.62rem; font-weight:700;
+    background:rgba(253,246,236,0.16); padding:5px 8px; border-radius:8px;
     opacity:0; transform:translateY(8px); transition:all 0.3s ease; align-self:flex-start;
   }
   .card:hover .metric{ opacity:1; transform:translateY(0); }
@@ -198,6 +198,7 @@
   .c4{ background:linear-gradient(155deg,#3F9BC7,#1B6690); }
   .c5{ background:linear-gradient(155deg,#1477A6,#052538); }
   .c6{ background:linear-gradient(155deg,#052538,#031B29); }
+  .c7{ background:linear-gradient(155deg,#3F9BC7,#0B5378); }
   .placeholder-note{
     margin-top:26px; font-size:0.82rem; color:rgba(253,246,236,0.5); font-family:'Space Mono',monospace;
   }
@@ -343,9 +344,8 @@
 <section class="feed" id="work">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="eyebrow">Selected work</div>
       <h2>The Current</h2>
-      <p>A running grid of campaigns, templates, and brand systems. Hover a card for the result.</p>
+      <p>Hover a card for the result.</p>
     </div>
     <div class="feed-grid">
       <div class="card c1 reveal">
@@ -378,8 +378,12 @@
         <div><h3>SEA Visual System</h3><div class="org"><a href="https://www.instagram.com/seauoft/" target="_blank" rel="noopener">Sustainable Engineers Association (SEA)</a></div></div>
         <div class="metric">Consistent templates across a 7-person team</div>
       </div>
+      <div class="card c7 reveal">
+        <div class="tag">Sports · Promo</div>
+        <div><h3>EAA Campaign Graphics</h3><div class="org"><a href="https://www.instagram.com/skulesports/" target="_blank" rel="noopener">Engineering Athletics Association (EAA)</a></div></div>
+        <div class="metric">Recruitment & event promo graphics</div>
+      </div>
     </div>
-    <div class="placeholder-note">↑ A mix of real work and a few placeholders — swap the rest in as you export more.</div>
   </div>
 </section>
 
@@ -418,6 +422,14 @@
       <div class="reel-card reveal">
         <p class="reel-label">Noble Path — Reel</p>
         <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DI-0NMko5bg/" data-instgrm-version="14"></blockquote>
+      </div>
+      <div class="reel-card reveal">
+        <p class="reel-label">Noble Path — Reel</p>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DI8V5UfoCOg/" data-instgrm-version="14"></blockquote>
+      </div>
+      <div class="reel-card reveal">
+        <p class="reel-label">SABIA — Recycled Décor</p>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DEXTyN6tTmv/" data-instgrm-version="14"></blockquote>
       </div>
     </div>
   </div>
@@ -517,7 +529,7 @@
         <div class="exp-date">MAY 2026 — APR 2027</div>
         <div>
           <div class="exp-role">Publicity Director</div>
-          <div class="exp-org"><a href="https://www.instagram.com/skulesports/" target="_blank" rel="noopener">Engineering Athletics Association (EAA)</a></div>
+          <div class="exp-org"><a href="https://www.instagram.com/skulesports/" target="_blank" rel="noopener">Engineering Athletics Association (EAA) — @skulesports</a></div>
           <p class="exp-desc">Design promotional graphics and marketing materials for athletic events and student engagement initiatives; manage social media outreach and maintain the org's Linktree.</p>
         </div>
       </div>
